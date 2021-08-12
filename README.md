@@ -41,4 +41,4 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ### Try this Project
 
-Hosted on Netlify :
+Hosted on Netlify : [https://redux-contact-diary.netlify.app](https://redux-contact-diary.netlify.app)
