@@ -7,11 +7,32 @@
 
 body {
   margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f9f9fb;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+  color: #28273b;
 }
+
+/* $rebecca-purple: #642ca9ff;
+$persian-rose: #ff36abff;
+$rose-pink: #ff74d4ff;
+$cotton-candy: #ffb8deff;
+$pale-pink: #ffdde1ff; */
+
+/* $orchid-crayola: #ffa9e7ff;
+$violet-web: #ff84e8ff;
+$french-violet: #7f2ccbff;
+$dark-grey: #414361ff;
+$blue-black: #2a2d43ff; */
+
+/* $light-blue: #b8b8f3ff;
+$light-purple: #d7b8f3ff;
+$light-pink: #f397d6ff;
+$hot-pink: #f42272ff;
+$black: #232e21ff; */
