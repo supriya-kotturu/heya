@@ -49,7 +49,9 @@ module.exports = {
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      resize: ["hover", "focus"],
+    },
   },
   plugins: ["@tailwindcss/forms", "@tailwindcss/line-clamp"],
 };

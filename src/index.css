@@ -19,20 +19,26 @@ code {
   color: #28273b;
 }
 
-/* $rebecca-purple: #642ca9ff;
-$persian-rose: #ff36abff;
-$rose-pink: #ff74d4ff;
-$cotton-candy: #ffb8deff;
-$pale-pink: #ffdde1ff; */
+.main-container {
+  @apply lg:w-1/2 md:w-3/4 mx-auto p-4;
+}
 
-/* $orchid-crayola: #ffa9e7ff;
-$violet-web: #ff84e8ff;
-$french-violet: #7f2ccbff;
-$dark-grey: #414361ff;
-$blue-black: #2a2d43ff; */
+.button {
+  @apply border-2 rounded-lg p-3 px-4 my-4 mx-2 shadow-xl;
+}
 
-/* $light-blue: #b8b8f3ff;
-$light-purple: #d7b8f3ff;
-$light-pink: #f397d6ff;
-$hot-pink: #f42272ff;
-$black: #232e21ff; */
+.button-primary {
+  @apply border-blue-002 bg-blue-002 text-white font-bold hover:bg-medium-01 hover:border-medium-01 hover:shadow-lg;
+}
+
+.button-secondary {
+  @apply border-medium-01 bg-white-01 text-medium-02 font-bold hover:bg-medium-01 hover:text-white-01 hover:border-medium-01 hover:shadow-lg;
+}
+
+.input-label {
+  @apply text-medium-02 m-4;
+}
+
+.input-field {
+  @apply rounded-lg h-10 w-full text-medium-02 border-2 border-medium-01 p-2 my-2;
+}
