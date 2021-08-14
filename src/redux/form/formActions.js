@@ -1,44 +1,44 @@
 import formTypes from "./formTypes";
 
-export function setFirstName(e) {
+export function setFirstName(firstName) {
   return {
     type: formTypes.SET_FIRST_NAME,
-    payload: e.target.value,
+    payload: firstName,
   };
 }
 
-export function setLastName(e) {
+export function setLastName(lastName) {
   return {
     type: formTypes.SET_LAST_NAME,
-    payload: e.target.value,
+    payload: lastName,
   };
 }
 
-export function setWorkPhone(e) {
+export function setWorkPhone(workPhone) {
   return {
     type: formTypes.SET_WORK_PHONE,
-    payload: e.target.value,
+    payload: workPhone,
   };
 }
 
-export function setLandline(e) {
+export function setLandline(landline) {
   return {
     type: formTypes.SET_LANDLINE,
-    payload: e.target.value,
+    payload: landline,
   };
 }
 
-export function setWorkEmail(e) {
+export function setWorkEmail(workEmail) {
   return {
     type: formTypes.SET_WORK_EMAIL,
-    payload: e.target.value,
+    payload: workEmail,
   };
 }
 
-export function setEmail(e) {
+export function setEmail(email) {
   return {
     type: formTypes.SET_EMAIL,
-    payload: e.target.value,
+    payload: email,
   };
 }
 

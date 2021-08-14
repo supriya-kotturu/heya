@@ -26,7 +26,7 @@ const formReducer = (state = initialFormState, action) => {
     case formTypes.SET_WORK_PHONE:
       return {
         ...state,
-        phone: action.payload,
+        workPhone: action.payload,
       };
 
     case formTypes.SET_LANDLINE:

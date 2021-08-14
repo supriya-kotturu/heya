@@ -1,2 +1,2 @@
-export * as formActions from "./form/formActions";
-export * as contactsAction from "./contacts/contactsAction";
+export * from "./form/formActions";
+export * from "./contacts/contactsAction";
