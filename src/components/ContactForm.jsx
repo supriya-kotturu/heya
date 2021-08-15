@@ -12,6 +12,7 @@ import {
   setLandline,
   setWorkEmail,
   setEmail,
+  updateContacts,
 } from "../redux";
 
 const ContactForm = () => {
@@ -21,6 +22,7 @@ const ContactForm = () => {
   const landline = useSelector((state) => state.form.landline);
   const workEmail = useSelector((state) => state.form.workEmail);
   const email = useSelector((state) => state.form.email);
+  const contacts = useSelector((state) => state.contacts.contactList);
   const dispatch = useDispatch();
 
   const handleChange = {
@@ -32,8 +34,26 @@ const ContactForm = () => {
     email: (e) => dispatch(setEmail(e.target.value)),
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newContact = {
+      firstName: firstName,
+      lastName: lastName,
+      workPhone: workPhone,
+      landline: landline,
+      workEmail: workEmail,
+      email: email,
+    };
+    dispatch(updateContacts(newContact));
+    console.log(contacts);
+  };
+
   return (
-    <form className="main-container md:grid md:grid-flow-row justify-items-left grid-cols-2 gap-x-6 gap-y-3 rounded-xl my-2">
+    <form
+      className="main-container md:grid md:grid-flow-row justify-items-left grid-cols-2 gap-x-6 gap-y-3 rounded-xl my-2"
+      onSubmit={handleSubmit}
+    >
       <FormInput
         label="First Name"
         type="text"
