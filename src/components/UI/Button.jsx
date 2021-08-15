@@ -16,7 +16,11 @@ const Button = ({
     } + ${isCustom && className}`;
 
   return (
-    <button className={buttonClassNames} onClick={handleClick}>
+    <button
+      className={buttonClassNames}
+      onClick={handleClick}
+      type={isPrimary ? "submit" : "button"}
+    >
       {label}
     </button>
   );
