@@ -1,2 +1,3 @@
 export * from "./form/formActions";
-export * from "./contacts/contactsAction";
+export * from "./contacts/contactsActions";
+export * from "./message/messageActions";
