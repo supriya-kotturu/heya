@@ -1,7 +1,8 @@
+import { useCallback, React } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import uuid from "react-uuid";
 
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 import FormInput from "./UI/FormInput";
 import Button from "./UI/Button";
@@ -13,10 +14,11 @@ import {
   setLandline,
   setWorkEmail,
   setEmail,
+  resetFormState,
   updateContacts,
 } from "../redux";
 
-const ContactForm = () => {
+const ContactForm = ({ handleShowForm }) => {
   const firstName = useSelector((state) => state.form.firstName);
   const lastName = useSelector((state) => state.form.lastName);
   const workPhone = useSelector((state) => state.form.workPhone);
@@ -27,18 +29,33 @@ const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleChange = {
-    firstName: (e) => dispatch(setFirstName(e.target.value)),
-    lastName: (e) => dispatch(setLastName(e.target.value)),
-    workPhone: (e) => dispatch(setWorkPhone(e.target.value)),
-    landline: (e) => dispatch(setLandline(e.target.value)),
-    workEmail: (e) => dispatch(setWorkEmail(e.target.value)),
-    email: (e) => dispatch(setEmail(e.target.value)),
+    firstName: useCallback(
+      (e) => dispatch(setFirstName(e.target.value)),
+      [dispatch]
+    ),
+    lastName: useCallback(
+      (e) => dispatch(setLastName(e.target.value)),
+      [dispatch]
+    ),
+    workPhone: useCallback(
+      (e) => dispatch(setWorkPhone(e.target.value)),
+      [dispatch]
+    ),
+    landline: useCallback(
+      (e) => dispatch(setLandline(e.target.value)),
+      [dispatch]
+    ),
+    workEmail: useCallback(
+      (e) => dispatch(setWorkEmail(e.target.value)),
+      [dispatch]
+    ),
+    email: useCallback((e) => dispatch(setEmail(e.target.value)), [dispatch]),
   };
 
-  const capitalize = (name) => {
+  const capitalize = useCallback((name) => {
     const lower = name.toLowerCase();
     return name[0].toUpperCase() + lower.slice(1);
-  };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -53,6 +70,7 @@ const ContactForm = () => {
       email: email,
     };
     dispatch(updateContacts(newContact));
+    dispatch(resetFormState());
     console.log(contacts);
   };
 
@@ -114,13 +132,19 @@ const ContactForm = () => {
       {/* <TextArea label="Note" name="note" value="note" cols="67" rows="8" /> */}
 
       <div className="col-span-2 mx-auto p-6">
-        <Button isSecondary={true} label="Cancel" />
+        <Button
+          isSecondary={true}
+          label="Cancel"
+          handleClick={handleShowForm}
+        />
         <Button isPrimary={true} isSubmit={true} label="Add Contact" />
       </div>
     </form>
   );
 };
 
-// ContactForm.propTypes = {};
+ContactForm.propTypes = {
+  handleShowForm: PropTypes.func,
+};
 
 export default ContactForm;

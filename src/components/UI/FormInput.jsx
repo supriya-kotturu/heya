@@ -22,4 +22,4 @@ FormInput.propTypes = {
   handleChange: PropTypes.func,
 };
 
-export default FormInput;
+export default React.memo(FormInput);

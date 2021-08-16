@@ -1,3 +1,4 @@
+import React from "react";
 // import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
@@ -35,4 +36,4 @@ const ContactsList = (props) => {
 
 // ContactsList.propTypes = {};
 
-export default ContactsList;
+export default React.memo(ContactsList);

@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 const Card = ({ name, workPhone, landline, workEmail, email }) => {
   return (
@@ -42,4 +43,4 @@ Card.propTypes = {
   email: PropTypes.string,
 };
 
-export default Card;
+export default React.memo(Card);

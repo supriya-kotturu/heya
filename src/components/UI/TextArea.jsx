@@ -30,4 +30,4 @@ TextArea.propTypes = {
   handleChange: PropTypes.func,
 };
 
-export default TextArea;
+export default React.memo(TextArea);
