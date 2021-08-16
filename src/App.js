@@ -1,4 +1,5 @@
 import ContactForm from "./components/ContactForm";
+import ContactsList from "./components/ContactsList";
 function App() {
   return (
     <div className="py-3">
@@ -7,6 +8,7 @@ function App() {
         <span className="text-medium-01">Contacts. Made easy.</span>
       </div>
       <ContactForm />
+      <ContactsList />
       <div className="main-container"></div>
     </div>
   );
