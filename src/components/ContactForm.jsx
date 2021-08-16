@@ -35,13 +35,18 @@ const ContactForm = () => {
     email: (e) => dispatch(setEmail(e.target.value)),
   };
 
+  const capitalize = (name) => {
+    const lower = name.toLowerCase();
+    return name[0].toUpperCase() + lower.slice(1);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newContact = {
       id: uuid(),
-      firstName: firstName,
-      lastName: lastName,
+      firstName: capitalize(firstName),
+      lastName: capitalize(lastName),
       workPhone: workPhone,
       landline: landline,
       workEmail: workEmail,
