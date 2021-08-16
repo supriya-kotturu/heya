@@ -6,6 +6,7 @@ const Button = ({
   isPrimary,
   isSecondary,
   isCustom,
+  isSubmit,
   handleClick,
   className,
 }) => {
@@ -19,7 +20,7 @@ const Button = ({
     <button
       className={buttonClassNames}
       onClick={handleClick}
-      type={isPrimary ? "submit" : "button"}
+      type={isSubmit ? "submit" : "button"}
     >
       {label}
     </button>
@@ -30,6 +31,7 @@ Button.propTypes = {
   label: PropTypes.string,
   isPrimary: PropTypes.bool,
   isCustom: PropTypes.bool,
+  isSubmit: PropTypes.bool,
   handleClick: PropTypes.func,
 };
 
