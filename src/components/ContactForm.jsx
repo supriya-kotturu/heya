@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
+import uuid from "react-uuid";
 
 // import PropTypes from "prop-types";
 
@@ -38,6 +39,7 @@ const ContactForm = () => {
     e.preventDefault();
 
     const newContact = {
+      id: uuid(),
       firstName: firstName,
       lastName: lastName,
       workPhone: workPhone,
@@ -108,7 +110,7 @@ const ContactForm = () => {
 
       <div className="col-span-2 mx-auto p-6">
         <Button isSecondary={true} label="Cancel" />
-        <Button isPrimary={true} label="Add Contact" />
+        <Button isPrimary={true} isSubmit={true} label="Add Contact" />
       </div>
     </form>
   );
