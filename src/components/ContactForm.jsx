@@ -16,6 +16,7 @@ import {
   setEmail,
   resetFormState,
   updateContacts,
+  setErrorMessage,
 } from "../redux";
 
 const ContactForm = ({ handleShowForm }) => {
@@ -30,7 +31,9 @@ const ContactForm = ({ handleShowForm }) => {
 
   const handleChange = {
     firstName: useCallback(
-      (e) => dispatch(setFirstName(e.target.value)),
+      (e) => {
+        dispatch(setFirstName(e.target.value));
+      },
       [dispatch]
     ),
     lastName: useCallback(
@@ -59,19 +62,44 @@ const ContactForm = ({ handleShowForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const message = { title: "", description: "" };
 
-    const newContact = {
-      id: uuid(),
-      firstName: capitalize(firstName),
-      lastName: capitalize(lastName),
-      workPhone: workPhone,
-      landline: landline,
-      workEmail: workEmail,
-      email: email,
-    };
-    dispatch(updateContacts(newContact));
-    dispatch(resetFormState());
-    console.log(contacts);
+    if (!firstName && !lastName) {
+      message.title = "Who are they?";
+      message.description =
+        "First name and last names cannot be empty. Please enter the values before submitting";
+      dispatch(setErrorMessage(message));
+      return;
+    } else if (!workPhone && !landline && !workEmail && !email) {
+      message.title = "How would we reach out to them?";
+      message.description =
+        "Please enter their contact number or email before submitting.";
+      dispatch(setErrorMessage(message));
+      return;
+    } else {
+      if (
+        (workPhone && workPhone.length !== 10) ||
+        (landline && landline.length !== 10)
+      ) {
+        console.log(workPhone.match(/D/g), landline.match(/D/g));
+        message.title = "Invalid phone";
+        message.description = "Please enter a valid contact number.";
+        dispatch(setErrorMessage(message));
+      } else {
+        const newContact = {
+          id: uuid(),
+          firstName: capitalize(firstName),
+          lastName: lastName && capitalize(lastName),
+          workPhone: workPhone,
+          landline: landline,
+          workEmail: workEmail,
+          email: email,
+        };
+        dispatch(updateContacts(newContact));
+        dispatch(resetFormState());
+      }
+      console.log(contacts);
+    }
   };
 
   return (
@@ -115,7 +143,7 @@ const ContactForm = ({ handleShowForm }) => {
 
       <FormInput
         label="Work Email"
-        type="text"
+        type="email"
         name="phoneNumber"
         value={workEmail}
         max={10}
@@ -123,7 +151,7 @@ const ContactForm = ({ handleShowForm }) => {
       />
       <FormInput
         label="Email"
-        type="text"
+        type="email"
         name="phoneNumber"
         value={email}
         max={10}

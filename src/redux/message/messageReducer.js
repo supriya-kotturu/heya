@@ -14,7 +14,7 @@ const messageReducer = (state = initialMessageState, action) => {
         title: action.payload.title,
         description: action.payload.description || "Don't know what went wrong",
         type: "ERROR",
-        showMessage: !state.showMessage,
+        showMessage: true,
       };
 
     case messageTypes.SET_SUCCESS_MESSAGE:
@@ -22,7 +22,7 @@ const messageReducer = (state = initialMessageState, action) => {
         title: action.payload.title,
         description: action.payload.description || "Don't know what went right",
         type: "SUCCESS",
-        showMessage: !state.showMessage,
+        showMessage: true,
       };
 
     case messageTypes.RESET_MESSAGE:
