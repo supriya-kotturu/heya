@@ -1,4 +1,4 @@
-import { useCallback, React } from "react";
+import { useCallback, React, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import uuid from "react-uuid";
 
@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 import FormInput from "./UI/FormInput";
 import Button from "./UI/Button";
+import Modal from "./UI/Modal";
 
 import {
   setFirstName,
@@ -27,7 +28,11 @@ const ContactForm = ({ handleShowForm }) => {
   const workEmail = useSelector((state) => state.form.workEmail);
   const email = useSelector((state) => state.form.email);
   const contacts = useSelector((state) => state.contacts.contactList);
+  const message = useSelector((state) => state.message);
+
   const dispatch = useDispatch();
+
+  console.log(message);
 
   const handleChange = {
     firstName: useCallback(
@@ -103,71 +108,75 @@ const ContactForm = ({ handleShowForm }) => {
   };
 
   return (
-    <form
-      className="main-container md:grid md:grid-flow-row justify-items-left grid-cols-2 gap-x-6 gap-y-3 rounded-xl my-2"
-      onSubmit={handleSubmit}
-    >
-      <FormInput
-        label="First Name"
-        type="text"
-        name="firstName"
-        value={firstName}
-        onChange={handleChange.firstName}
-      />
-
-      <FormInput
-        label="Last Name"
-        type="text"
-        name="lastName"
-        value={lastName}
-        onChange={handleChange.lastName}
-      />
-
-      <FormInput
-        label="Work Contact"
-        type="text"
-        name="workPhone"
-        value={workPhone}
-        max={10}
-        onChange={handleChange.workPhone}
-      />
-
-      <FormInput
-        label="Landline"
-        type="text"
-        name="landline"
-        value={landline}
-        max={10}
-        onChange={handleChange.landline}
-      />
-
-      <FormInput
-        label="Work Email"
-        type="email"
-        name="phoneNumber"
-        value={workEmail}
-        max={10}
-        onChange={handleChange.workEmail}
-      />
-      <FormInput
-        label="Email"
-        type="email"
-        name="phoneNumber"
-        value={email}
-        max={10}
-        onChange={handleChange.email}
-      />
-      {/* <TextArea label="Note" name="note" value="note" cols="67" rows="8" /> */}
-
-      <div className="col-span-2 mx-auto p-6">
-        <Button
-          isSecondary={true}
-          label="Cancel"
-          handleClick={handleShowForm}
+    <Fragment>
+      {" "}
+      <Modal message={message} />
+      <form
+        className="main-container md:grid md:grid-flow-row justify-items-left grid-cols-2 gap-x-6 gap-y-3 rounded-xl my-2"
+        onSubmit={handleSubmit}
+      >
+        <FormInput
+          label="First Name"
+          type="text"
+          name="firstName"
+          value={firstName}
+          onChange={handleChange.firstName}
         />
-        <Button isPrimary={true} isSubmit={true} label="Add Contact" />
-      </div>
-    </form>
+
+        <FormInput
+          label="Last Name"
+          type="text"
+          name="lastName"
+          value={lastName}
+          onChange={handleChange.lastName}
+        />
+
+        <FormInput
+          label="Work Contact"
+          type="text"
+          name="workPhone"
+          value={workPhone}
+          max={10}
+          onChange={handleChange.workPhone}
+        />
+
+        <FormInput
+          label="Landline"
+          type="text"
+          name="landline"
+          value={landline}
+          max={10}
+          onChange={handleChange.landline}
+        />
+
+        <FormInput
+          label="Work Email"
+          type="email"
+          name="phoneNumber"
+          value={workEmail}
+          max={10}
+          onChange={handleChange.workEmail}
+        />
+        <FormInput
+          label="Email"
+          type="email"
+          name="phoneNumber"
+          value={email}
+          max={10}
+          onChange={handleChange.email}
+        />
+        {/* <TextArea label="Note" name="note" value="note" cols="67" rows="8" /> */}
+
+        <div className="col-span-2 mx-auto p-6">
+          <Button
+            isSecondary={true}
+            label="Cancel"
+            handleClick={handleShowForm}
+          />
+          <Button isPrimary={true} isSubmit={true} label="Add Contact" />
+        </div>
+      </form>
+    </Fragment>
   );
 };
 

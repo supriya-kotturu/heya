@@ -42,3 +42,27 @@ code {
 .input-field {
   @apply rounded-lg h-10 w-full text-medium-02 border-2 border-medium-01 p-2 my-2;
 }
+
+.modal-backdrop {
+  @apply fixed bg-gray-900 bg-opacity-70  top-0 left-0 w-full h-full z-10;
+}
+
+.modal-container {
+  @apply w-3/4 md:w-3/5 lg:w-1/4 mx-auto m-3 bg-white-01 font-sans rounded-lg shadow-lg fixed z-20 inset-x-40 top-40 text-center;
+}
+
+.modal-header {
+  @apply text-3xl font-bold p-6 bg-blue-002 rounded-t-lg text-white-003;
+}
+
+.modal-message {
+  @apply p-4 mx-6 my-3 text-lg text-medium-02;
+}
+
+.modal-footer {
+  @apply px-6 py-3 text-right;
+}
+
+.modal-hr {
+  @apply border border-medium-01;
+}

@@ -4,13 +4,9 @@ import { useSelector } from "react-redux";
 import ContactForm from "./components/ContactForm";
 import ContactsList from "./components/ContactsList";
 import Button from "./components/UI/Button";
-import Modal from "./components/UI/Modal";
 
 function App() {
   const [showContactForm, setShowContactForm] = useState(false);
-  const message = useSelector((state) => state.message);
-
-  console.log(message);
 
   const handleShowForm = useCallback(() => {
     setShowContactForm((prevShowContactForm) => !prevShowContactForm);
@@ -41,7 +37,6 @@ function App() {
 
   return (
     <Fragment>
-      <Modal message={message} />
       <div className="py-3">
         <div className="mx-auto text-center">
           <p className=" text-blue-002 font-extrabold text-2xl">Heyaa!</p>
