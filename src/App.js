@@ -1,5 +1,4 @@
 import { useState, useCallback, Fragment } from "react";
-import { useSelector } from "react-redux";
 
 import ContactForm from "./components/ContactForm";
 import ContactsList from "./components/ContactsList";
