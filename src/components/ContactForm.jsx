@@ -109,7 +109,6 @@ const ContactForm = ({ handleShowForm }) => {
 
   return (
     <Fragment>
-      {" "}
       <Modal message={message} />
       <form
         className="main-container md:grid md:grid-flow-row justify-items-left grid-cols-2 gap-x-6 gap-y-3 rounded-xl my-2"
