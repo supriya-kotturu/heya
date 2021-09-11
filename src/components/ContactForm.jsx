@@ -1,6 +1,6 @@
 import { useCallback, React, Fragment } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import uuid from "react-uuid";
+import { v4 as uuid } from "uuid";
 
 import PropTypes from "prop-types";
 
@@ -33,6 +33,8 @@ const ContactForm = ({ handleShowForm }) => {
   const dispatch = useDispatch();
 
   console.log(message);
+
+  console.log(uuid());
 
   const handleChange = {
     firstName: useCallback(

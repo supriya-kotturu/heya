@@ -9,7 +9,7 @@ const ContactsList = (props) => {
   console.log("list: ", contactList);
   //  grid grid-flow-row place-items-center grid-gap-2 md:grid-cols-2 lg:grid-cols-4
   return (
-    <div className="mx-auto p-2 w-4/5 flex flex-row flex-wrap justify-center ">
+    <div className="mx-auto p-2 w-4/5 flex flex-row flex-wrap justify-center">
       {contactList.map(
         ({
           id,

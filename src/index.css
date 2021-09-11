@@ -48,7 +48,7 @@ code {
 }
 
 .modal-container {
-  @apply w-3/4 md:w-3/5 lg:w-1/4 mx-auto m-3 bg-white-01 font-sans rounded-lg shadow-lg fixed z-20 inset-x-40 top-40 text-center;
+  @apply w-3/4 md:w-3/5 lg:w-1/4 mx-auto m-3 bg-white-01 font-sans rounded-lg shadow-lg fixed z-20 inset-x-10 md:inset-x-20 lg:inset-x-40 top-40 text-center;
 }
 
 .modal-header {
