@@ -1,4 +1,4 @@
-import formTypes from "./formTypes";
+import formTypes from './formTypes';
 
 export function setFirstName(firstName) {
   return {

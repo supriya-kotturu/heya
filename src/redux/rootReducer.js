@@ -1,8 +1,8 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
-import formReducer from "./form/formReducer";
-import contactsReducer from "./contacts/contactsReducer";
-import messageReducer from "./message/messageReducer";
+import formReducer from './form/formReducer';
+import contactsReducer from './contacts/contactsReducer';
+import messageReducer from './message/messageReducer';
 
 const rootReducer = combineReducers({
   form: formReducer,

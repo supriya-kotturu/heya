@@ -1,12 +1,12 @@
-import formTypes from "./formTypes";
+import formTypes from './formTypes';
 
 const initialFormState = {
-  firstName: "",
-  lastName: "",
-  workPhone: "",
-  landline: "",
-  workEmail: "",
-  email: "",
+  firstName: '',
+  lastName: '',
+  workPhone: '',
+  landline: '',
+  workEmail: '',
+  email: '',
 };
 
 const formReducer = (state = initialFormState, action) => {

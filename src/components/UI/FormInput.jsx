@@ -2,14 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const FormInput = (props) => {
-  const { label, name, handleChange } = props;
+  const { label, name, handleChange, ...otherProps } = props;
   return (
     <div>
       <label className="input-label" htmlFor={name}>
         {label}
       </label>
       <br />
-      <input className="input-field" onChange={handleChange} {...props} />
+      <input className="input-field" onChange={handleChange} {...otherProps} />
     </div>
   );
 };

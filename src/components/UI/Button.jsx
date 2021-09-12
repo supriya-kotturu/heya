@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Button = ({
   label,
@@ -11,16 +11,16 @@ const Button = ({
   className,
 }) => {
   const buttonClassNames =
-    "button " +
-    `${isPrimary && " button-primary "} + ${
-      isSecondary && " button-secondary "
+    'button ' +
+    `${isPrimary && ' button-primary '} + ${
+      isSecondary && ' button-secondary '
     } + ${isCustom && className}`;
 
   return (
     <button
       className={buttonClassNames}
       onClick={handleClick}
-      type={isSubmit ? "submit" : "button"}
+      type={isSubmit ? 'submit' : 'button'}
     >
       {label}
     </button>

@@ -14,9 +14,14 @@ const AuthLogin = (props) => {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
 
+  const handleEmail = (e) => {
+    e.preventDefault();
+    setEmail(e.target.value);
+  };
+
   const handleLogin = async (email) => {
     const message = { title: "", description: "" };
-    console.log(email);
+
     if (email.length === 0) {
       message.title = "Invalid email";
       message.description = "Please enter a valid email before submitting";
@@ -50,6 +55,9 @@ const AuthLogin = (props) => {
       <h2 className="text-lg text-center font-bold my-3">
         Sign in via magic link with your email below
       </h2>
+      {loading && (
+        <p className="text-base text-center">Processing your request ... </p>
+      )}
       <form className="my-3">
         <div className="w-3/4 lg:w-1/2 mx-auto my-3">
           <FormInput
@@ -58,7 +66,7 @@ const AuthLogin = (props) => {
             type="email"
             placeholder="youremail@domain.com"
             value={email}
-            handleChange={(e) => setEmail(e.target.value)}
+            handleChange={handleEmail}
           />
         </div>
         <center>

@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 const Card = ({ name, workPhone, landline, workEmail, email }) => {
   return (
     <div className="bg-white border-2 border-blue-002  p-6  shadow-lg rounded-lg m-6">

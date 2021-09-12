@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const TextArea = (props) => {
   const { label, name, handleChange } = props;
   const classNames =
-    "w-full h-full rounded-lg resize-none border-2 p-2" + props.className;
+    'w-full h-full rounded-lg resize-none border-2 p-2' + props.className;
   return (
     <div>
       <label className="text-medium-02 m-4" htmlFor={name}>

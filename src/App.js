@@ -1,8 +1,11 @@
-import { useState, useCallback, Fragment } from "react";
+import { useState, useCallback, Fragment } from 'react';
 
-import ContactForm from "./components/ContactForm";
-import ContactsList from "./components/ContactsList";
-import Button from "./components/UI/Button";
+import { supabase } from './utils/supabase';
+
+import ContactForm from './components/ContactForm';
+import ContactsList from './components/ContactsList';
+import Button from './components/UI/Button';
+import AuthLogin from './components/AuthLogin';
 
 function App() {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -14,7 +17,7 @@ function App() {
   let formContent = (
     <div
       className={`main-container my-4 bg-blue-001 text-center rounded-xl ${
-        showContactForm && "hidden"
+        showContactForm && 'hidden'
       }`}
     >
       <Button
@@ -41,6 +44,7 @@ function App() {
           <p className=" text-blue-002 font-extrabold text-2xl">Heyaa!</p>
           <span className="text-medium-01">Contacts. Made easy.</span>
         </div>
+        {!supabase.auth.user() && <AuthLogin />}
         {formContent}
         <ContactsList />
         <div className="main-container"></div>

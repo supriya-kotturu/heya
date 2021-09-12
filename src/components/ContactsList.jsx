@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
+import { getContactsFromSupabase } from "../redux";
 
 import Card from "./UI/Card";
 
 const ContactsList = (props) => {
   const contactList = useSelector((state) => state.contacts.contactList);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getContactsFromSupabase);
+  }, [dispatch]);
+
   console.log("list: ", contactList);
   //  grid grid-flow-row place-items-center grid-gap-2 md:grid-cols-2 lg:grid-cols-4
   return (

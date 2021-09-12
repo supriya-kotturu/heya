@@ -1,17 +1,17 @@
-import React, { Fragment } from "react";
-import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import React, { Fragment } from 'react';
+import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 
-import Button from "./Button";
-import { resetMessge } from "../../redux";
+import Button from './Button';
+import { resetMessge } from '../../redux';
 
 const Backdrop = ({ message }) => {
   const dispatch = useDispatch();
 
   return (
     <div
-      className={`modal-backdrop ${!message.showMessage && "hidden"}`}
+      className={`modal-backdrop ${!message.showMessage && 'hidden'}`}
       onClick={() => {
         dispatch(resetMessge());
       }}
@@ -23,7 +23,7 @@ const ModalOverlay = ({ message }) => {
   const dispatch = useDispatch();
 
   return (
-    <div className={`modal-container ${!message.showMessage && "hidden"}`}>
+    <div className={`modal-container ${!message.showMessage && 'hidden'}`}>
       <header>
         <h2 className="modal-header">{message.title}</h2>
       </header>
@@ -48,11 +48,11 @@ const Modal = ({ message }) => {
     <Fragment>
       {ReactDOM.createPortal(
         <Backdrop message={message} />,
-        document.getElementById("backdrop-root")
+        document.getElementById('backdrop-root')
       )}
       {ReactDOM.createPortal(
         <ModalOverlay message={message} />,
-        document.getElementById("overlay-root")
+        document.getElementById('overlay-root')
       )}
     </Fragment>
   );

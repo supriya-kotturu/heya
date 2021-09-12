@@ -1,12 +1,12 @@
-import { useCallback, React, Fragment } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { v4 as uuid } from "uuid";
+import { useCallback, React, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { v4 as uuid } from 'uuid';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import FormInput from "./UI/FormInput";
-import Button from "./UI/Button";
-import Modal from "./UI/Modal";
+import FormInput from './UI/FormInput';
+import Button from './UI/Button';
+import Modal from './UI/Modal';
 
 import {
   setFirstName,
@@ -16,9 +16,10 @@ import {
   setWorkEmail,
   setEmail,
   resetFormState,
-  updateContacts,
+  addNewContactInSupabase,
   setErrorMessage,
-} from "../redux";
+  getContactsFromSupabase,
+} from '../redux';
 
 const ContactForm = ({ handleShowForm }) => {
   const firstName = useSelector((state) => state.form.firstName);
@@ -69,18 +70,18 @@ const ContactForm = ({ handleShowForm }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const message = { title: "", description: "" };
+    const message = { title: '', description: '' };
 
     if (!firstName && !lastName) {
-      message.title = "Who are they?";
+      message.title = 'Who are they?';
       message.description =
-        "First name and last names cannot be empty. Please enter the values before submitting";
+        'First name and last names cannot be empty. Please enter the values before submitting';
       dispatch(setErrorMessage(message));
       return;
     } else if (!workPhone && !landline && !workEmail && !email) {
-      message.title = "How would we reach out to them?";
+      message.title = 'How would we reach out to them?';
       message.description =
-        "Please enter their contact number or email before submitting.";
+        'Please enter their contact number or email before submitting.';
       dispatch(setErrorMessage(message));
       return;
     } else {
@@ -89,8 +90,8 @@ const ContactForm = ({ handleShowForm }) => {
         (landline && landline.length !== 10)
       ) {
         console.log(workPhone.match(/D/g), landline.match(/D/g));
-        message.title = "Invalid phone";
-        message.description = "Please enter a valid contact number.";
+        message.title = 'Invalid phone';
+        message.description = 'Please enter a valid contact number.';
         dispatch(setErrorMessage(message));
       } else {
         const newContact = {
@@ -102,7 +103,8 @@ const ContactForm = ({ handleShowForm }) => {
           workEmail: workEmail,
           email: email,
         };
-        dispatch(updateContacts(newContact));
+        dispatch(addNewContactInSupabase(newContact));
+        dispatch(getContactsFromSupabase());
         dispatch(resetFormState());
       }
       console.log(contacts);
