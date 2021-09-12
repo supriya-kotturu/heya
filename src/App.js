@@ -1,11 +1,10 @@
 import { useState, useCallback, Fragment } from 'react';
 
-import { supabase } from './utils/supabase';
-
 import ContactForm from './components/ContactForm';
 import ContactsList from './components/ContactsList';
 import Button from './components/UI/Button';
 import AuthLogin from './components/AuthLogin';
+import { supabase } from './utils/supabase';
 
 function App() {
   const [showContactForm, setShowContactForm] = useState(false);
@@ -45,8 +44,8 @@ function App() {
           <span className="text-medium-01">Contacts. Made easy.</span>
         </div>
         {!supabase.auth.user() && <AuthLogin />}
-        {formContent}
-        <ContactsList />
+        {supabase.auth.user() && formContent}
+        {supabase.auth.user() && <ContactsList />}
         <div className="main-container"></div>
       </div>
     </Fragment>
