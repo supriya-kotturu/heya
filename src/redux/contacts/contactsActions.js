@@ -39,7 +39,7 @@ export function getContactsFromSupabase() {
     } catch (error) {
       message.title = 'Cannot get your contacts';
       message.description = error.message || error.error_description;
-      dispatch(setErrorMessage(message));
+      // dispatch(setErrorMessage(message));
     } finally {
       // setLoading(false);
     }
