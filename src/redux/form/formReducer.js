@@ -7,6 +7,8 @@ const initialFormState = {
   landline: '',
   workEmail: '',
   email: '',
+  id: '',
+  isEditing: false,
 };
 
 const formReducer = (state = initialFormState, action) => {
@@ -45,6 +47,18 @@ const formReducer = (state = initialFormState, action) => {
       return {
         ...state,
         email: action.payload,
+      };
+
+    case formTypes.SET_ID:
+      return {
+        ...state,
+        id: action.payload,
+      };
+
+    case formTypes.SET_IS_EDITING:
+      return {
+        ...state,
+        isEditing: action.payload,
       };
 
     case formTypes.RESET_FORM_STATE:

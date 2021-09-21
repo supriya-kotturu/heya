@@ -15,10 +15,9 @@ import {
   setLandline,
   setWorkEmail,
   setEmail,
-  resetFormState,
   addNewContactInSupabase,
   setErrorMessage,
-  getContactsFromSupabase,
+  updateContact,
 } from '../redux';
 
 const ContactForm = ({ handleShowForm }) => {
@@ -28,14 +27,11 @@ const ContactForm = ({ handleShowForm }) => {
   const landline = useSelector((state) => state.form.landline);
   const workEmail = useSelector((state) => state.form.workEmail);
   const email = useSelector((state) => state.form.email);
-  const contacts = useSelector((state) => state.contacts.contactList);
+  const isEditing = useSelector((state) => state.form.isEditing);
   const message = useSelector((state) => state.message);
+  const id = useSelector((state) => state.form.id);
 
   const dispatch = useDispatch();
-
-  console.log(message);
-
-  console.log(uuid());
 
   const handleChange = {
     firstName: useCallback(
@@ -89,7 +85,7 @@ const ContactForm = ({ handleShowForm }) => {
         (workPhone && workPhone.length !== 10) ||
         (landline && landline.length !== 10)
       ) {
-        console.log(workPhone.match(/D/g), landline.match(/D/g));
+        // console.log(workPhone.match(/D/g), landline.match(/D/g));
         message.title = 'Invalid phone';
         message.description = 'Please enter a valid contact number.';
         dispatch(setErrorMessage(message));
@@ -103,11 +99,22 @@ const ContactForm = ({ handleShowForm }) => {
           workEmail: workEmail,
           email: email,
         };
-        dispatch(addNewContactInSupabase(newContact));
-        dispatch(getContactsFromSupabase());
-        dispatch(resetFormState());
+        const editContact = isEditing && {
+          id: id,
+          firstName: capitalize(firstName),
+          lastName: lastName && capitalize(lastName),
+          workPhone: workPhone,
+          landline: landline,
+          workEmail: workEmail,
+          email: email,
+        };
+
+        // console.log(editContact, id);
+        // console.log('id : ', id);
+
+        isEditing && dispatch(updateContact(id, editContact));
+        !isEditing && dispatch(addNewContactInSupabase(newContact));
       }
-      console.log(contacts);
     }
   };
 
@@ -122,6 +129,7 @@ const ContactForm = ({ handleShowForm }) => {
           label="First Name"
           type="text"
           name="firstName"
+          placeholder="Clark Joseph"
           value={firstName}
           onChange={handleChange.firstName}
         />
@@ -130,6 +138,7 @@ const ContactForm = ({ handleShowForm }) => {
           label="Last Name"
           type="text"
           name="lastName"
+          placeholder="Kent"
           value={lastName}
           onChange={handleChange.lastName}
         />
@@ -138,6 +147,7 @@ const ContactForm = ({ handleShowForm }) => {
           label="Work Contact"
           type="text"
           name="workPhone"
+          placeholder="8825963255"
           value={workPhone}
           max={10}
           onChange={handleChange.workPhone}
@@ -147,6 +157,7 @@ const ContactForm = ({ handleShowForm }) => {
           label="Landline"
           type="text"
           name="landline"
+          placeholder="7785425899"
           value={landline}
           max={10}
           onChange={handleChange.landline}
@@ -155,7 +166,8 @@ const ContactForm = ({ handleShowForm }) => {
         <FormInput
           label="Work Email"
           type="email"
-          name="phoneNumber"
+          name="workEmail"
+          placeholder="clark.kent@dailyplanet.org"
           value={workEmail}
           max={10}
           onChange={handleChange.workEmail}
@@ -163,7 +175,8 @@ const ContactForm = ({ handleShowForm }) => {
         <FormInput
           label="Email"
           type="email"
-          name="phoneNumber"
+          name="email"
+          placeholder="clark@yahoo.com"
           value={email}
           max={10}
           onChange={handleChange.email}
@@ -176,7 +189,11 @@ const ContactForm = ({ handleShowForm }) => {
             label="Cancel"
             handleClick={handleShowForm}
           />
-          <Button isPrimary={true} isSubmit={true} label="Add Contact" />
+          <Button
+            isPrimary={true}
+            isSubmit={true}
+            label={isEditing ? 'Confirm' : `Add Contact`}
+          />
         </div>
       </form>
     </Fragment>

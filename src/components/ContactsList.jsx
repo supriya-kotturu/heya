@@ -1,10 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 // import PropTypes from "prop-types";
-import { useSelector, useDispatch } from "react-redux";
-
-import { getContactsFromSupabase } from "../redux";
-
-import Card from "./UI/Card";
+import { useSelector, useDispatch } from 'react-redux';
+import { getContactsFromSupabase } from '../redux';
+import Card from './UI/Card';
 
 const ContactsList = (props) => {
   const contactList = useSelector((state) => state.contacts.contactList);
@@ -15,7 +13,7 @@ const ContactsList = (props) => {
     dispatch(getContactsFromSupabase);
   }, [dispatch]);
 
-  console.log("list: ", contactList);
+  // console.log('list: ', contactList);
   //  grid grid-flow-row place-items-center grid-gap-2 md:grid-cols-2 lg:grid-cols-4
   return (
     <div className="mx-auto p-2 w-4/5 flex flex-row flex-wrap justify-center">
@@ -31,7 +29,8 @@ const ContactsList = (props) => {
         }) => (
           <Card
             key={id}
-            name={firstName + " " + lastName}
+            id={id}
+            name={firstName + ' ' + lastName}
             workPhone={workPhone}
             landline={landline}
             workEmail={workEmail}

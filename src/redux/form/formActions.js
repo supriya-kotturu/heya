@@ -42,6 +42,17 @@ export function setEmail(email) {
   };
 }
 
+export function setIsEditing(state) {
+  return {
+    type: formTypes.SET_IS_EDITING,
+    payload: state,
+  };
+}
+
+export function setId(id) {
+  return { type: formTypes.SET_ID, payload: id };
+}
+
 export function resetFormState() {
   return {
     type: formTypes.RESET_FORM_STATE,

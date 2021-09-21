@@ -1,23 +1,23 @@
-import contactsTypes from "./contactsTypes";
-import { supabase } from "../../utils/supabase";
+import contactsTypes from './contactsTypes';
+import { supabase } from '../../utils/supabase';
 
 const initialContactList = {
   loading: false,
   contactList: !supabase.auth.user()
     ? [
         {
-          id: "1",
-          firstName: "Bob",
-          lastName: "Marley",
-          workPhone: "7785469311",
-          email: "bob.marley@yahoo.com",
+          id: '1',
+          firstName: 'Bob',
+          lastName: 'Marley',
+          workPhone: '7785469311',
+          email: 'bob.marley@yahoo.com',
         },
         {
-          id: "2",
-          firstName: "Maddison",
-          lastName: "Smith",
-          workPhone: "7866329822",
-          email: "maddie.smith34@gmail.com",
+          id: '2',
+          firstName: 'Maddison',
+          lastName: 'Smith',
+          workPhone: '7866329822',
+          email: 'maddie.smith34@gmail.com',
         },
       ]
     : [],

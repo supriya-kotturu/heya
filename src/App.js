@@ -1,4 +1,5 @@
 import { useState, useCallback, Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import ContactForm from './components/ContactForm';
 import ContactsList from './components/ContactsList';
@@ -6,12 +7,17 @@ import Button from './components/UI/Button';
 import AuthLogin from './components/AuthLogin';
 import { supabase } from './utils/supabase';
 
+import { setIsEditing } from './redux';
+
 function App() {
+  const isEditing = useSelector((state) => state.form.isEditing);
   const [showContactForm, setShowContactForm] = useState(false);
+  const dispatch = useDispatch();
 
   const handleShowForm = useCallback(() => {
     setShowContactForm((prevShowContactForm) => !prevShowContactForm);
-  }, []);
+    dispatch(setIsEditing(false));
+  }, [dispatch]);
 
   let formContent = (
     <div
@@ -27,7 +33,7 @@ function App() {
     </div>
   );
 
-  if (showContactForm) {
+  if (showContactForm || isEditing) {
     formContent = (
       <ContactForm
         handleShowForm={handleShowForm}
